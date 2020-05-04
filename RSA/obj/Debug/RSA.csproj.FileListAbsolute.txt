@@ -1,0 +1,10 @@
+D:\RSA_GIT\rsakriptografia\RSA\bin\Debug\RSA.exe.config
+D:\RSA_GIT\rsakriptografia\RSA\bin\Debug\RSA.exe
+D:\RSA_GIT\rsakriptografia\RSA\bin\Debug\RSA.pdb
+D:\RSA_GIT\rsakriptografia\RSA\obj\Debug\RSA.csprojAssemblyReference.cache
+D:\RSA_GIT\rsakriptografia\RSA\obj\Debug\RSA.Form1.resources
+D:\RSA_GIT\rsakriptografia\RSA\obj\Debug\RSA.Properties.Resources.resources
+D:\RSA_GIT\rsakriptografia\RSA\obj\Debug\RSA.csproj.GenerateResource.cache
+D:\RSA_GIT\rsakriptografia\RSA\obj\Debug\RSA.csproj.CoreCompileInputs.cache
+D:\RSA_GIT\rsakriptografia\RSA\obj\Debug\RSA.exe
+D:\RSA_GIT\rsakriptografia\RSA\obj\Debug\RSA.pdb
