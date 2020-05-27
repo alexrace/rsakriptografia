@@ -13,10 +13,7 @@ namespace RSA
 {
     public partial class Form1 : Form
     {
-        UnicodeEncoding ByteConverter = new UnicodeEncoding();
-        RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
-        byte[] plaintext;
-        byte[] encryptedtext;
+       
         public Form1()
         {
             InitializeComponent();
@@ -24,13 +21,20 @@ namespace RSA
             panel2.BackColor = Color.FromArgb(125, Color.Black);
             panel3.BackColor = Color.FromArgb(125, Color.Black);
             panel4.BackColor = Color.FromArgb(125, Color.Black);
+            panel5.BackColor = Color.FromArgb(125, Color.Black);
             btn_exit.BackColor = Color.FromArgb(125, Color.White);
             button1.BackColor = Color.FromArgb(125, Color.White);
             button2.BackColor = Color.FromArgb(125, Color.White);
             btn_kodol.BackColor = Color.FromArgb(125, Color.White);
             label1.BackColor = Color.FromArgb(125, Color.White);
             label2.BackColor = Color.FromArgb(125, Color.White);
-            
+            label3.BackColor = Color.FromArgb(125, Color.White);
+
+
+            //kulcsok.Text = string.Format("Publikus kulcs: {0} \n privát kulcs: {1}",publicKeyString,privateKeyString);
+
+            richTextBox1.Text = GenerateTestString();
+
         }
 
         
@@ -47,15 +51,22 @@ namespace RSA
 
         private void Btn_kodol_Click(object sender, EventArgs e)
         {
-            //plaintext = ByteConverter.GetBytes(richTextBox1.Text);
-            //encryptedtext = Encryption(plaintext, RSA.ExportParameters(false), false);
-            //richTextBox2.Text = ByteConverter.GetString(encryptedtext);
+            var cryptoServiceProvider = new RSACryptoServiceProvider(2048);
+            
+            var publicKey = cryptoServiceProvider.ExportParameters(false);
+
+            string publicKeyString = GetKeyString(publicKey);
+            
+            string encryptedText = Encrypt(richTextBox1.Text, publicKeyString);
+            richTextBox2.Text = encryptedText;
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            //byte[] decrpytedtext = Decryption(encryptedtext, RSA.ExportParameters(true), false);
-            //richTextBox1.Text = ByteConverter.GetString(decrpytedtext);
+            var cryptoServiceProvider = new RSACryptoServiceProvider(2048);
+            var privateKey = cryptoServiceProvider.ExportParameters(true);
+            string privateKeyString = GetKeyString(privateKey);
+            eredmeny.Text = Decrypt(richTextBox2.Text, privateKeyString);
         }
 
         public static string GetKeyString(RSAParameters publicKey)
@@ -95,7 +106,9 @@ namespace RSA
                 {
                     rsa.FromXmlString(privateKeyString);
                     var resultBytes = Convert.FromBase64String(textToDecrypt);
+                    
                     var decryptedBytes = rsa.Decrypt(resultBytes, true);
+                    
                     var decryptedData = Encoding.UTF8.GetString(decryptedBytes);
                     return decryptedData.ToString();
                 }
